@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="score">
+        <item>1分（正常模式）</item>
+        <item>2分（困难模式）</item>
+        <item>3分（挑战模式，慎重）</item>
+        <item>4分（极限模式，不要选）</item>
+    </string-array>
+</resources>

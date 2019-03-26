@@ -6,4 +6,10 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="nav_today">今日</string>
+    <string name="nav_tomorrow">明日</string>
+    <string name="nav_mine">我的</string>
+
+    <string name="create_action_title">描述行动</string>
 </resources>
