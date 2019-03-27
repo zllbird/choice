@@ -17,6 +17,6 @@
     <string name="confirm_create_action">Create Action</string>
     <string name="et_hint_create_action">Write Your Action</string>
 
-
+    <string name="change_choice">CHANGE CHOICE</string>
 
 </resources>

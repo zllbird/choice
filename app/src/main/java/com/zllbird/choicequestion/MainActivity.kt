@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.zllbird.choicequestion.choice.CreateActionActivity
+import com.zllbird.choicequestion.plan.CreateTomorrowPlanActivity
 import com.zllbird.choicequestion.plan.DayPlanFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun loadLintner() {
         // 跳转到创建行动条目
-        fab.setOnClickListener { startActivityForResult<CreateActionActivity>(CREATE_ACTION) }
+//        fab.setOnClickListener { startActivityForResult<CreateActionActivity>(CREATE_ACTION) }
+        fab.setOnClickListener { startActivityForResult<CreateTomorrowPlanActivity>(CREATE_ACTION) }
     }
 
     private fun loadNav(){
