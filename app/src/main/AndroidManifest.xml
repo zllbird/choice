@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".choice.CreateActionActivity">
         </activity>
+        <activity android:name=".choice.ChoiceTopicActivity"/>
     </application>
 
 </manifest>

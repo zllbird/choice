@@ -16,6 +16,10 @@ import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    companion object {
+        const val CREATE_ACTION = 1001
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,9 +28,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-
-//            bottom_nav_view.menu.add(R.string.search_menu_title)
-            startActivity<CreateActionActivity>()
+            startActivityForResult<CreateActionActivity>(CREATE_ACTION)
         }
 
         val toggle = ActionBarDrawerToggle(

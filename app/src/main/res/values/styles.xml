@@ -13,5 +13,25 @@
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="SpinnerLight" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/colorContent</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:background">@color/colorContentBG</item>
+    </style>
 
+    <style name="ButtonDark">
+        <item name="android:background">@color/colorBG</item>
+        <item name="android:textColor">@color/colorTitle</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ButtonLight">
+        <item name="android:background">@color/colorContentBG</item>
+        <item name="android:textColor">@color/colorContent</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

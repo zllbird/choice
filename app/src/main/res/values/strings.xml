@@ -12,4 +12,11 @@
     <string name="nav_mine">我的</string>
 
     <string name="create_action_title">描述行动</string>
+
+    <string name="choice_topic">Choice Topic</string>
+    <string name="confirm_create_action">Create Action</string>
+    <string name="et_hint_create_action">Write Your Action</string>
+
+
+
 </resources>

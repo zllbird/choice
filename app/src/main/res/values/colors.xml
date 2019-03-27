@@ -3,4 +3,35 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorTitle">#839496</color>
+    <color name="colorBoldTitle">#93a1a1</color>
+    <color name="colorBG">#002b36</color>
+    <!--•	badage ff2600 透明度 20%-->
+
+    <color name="colorContent">#657b83</color>
+    <color name="colorContentLine">#33657b83</color>
+    <color name="colorContentBG">#fdf6e3</color>
+    <color name="colorBoldContent">#586e75</color>
+
+    <color name="colorSelectBG">#073642</color>
+    <color name="colorSelectText">#93a1a1</color>
+
+    <color name="black">#073642</color>
+    <color name="blackLight">#002b36</color>
+
+    <color name="red">#dc322f</color>
+    <color name="redLight">#cb4b16</color>
+
+    <color name="white">#ffffff</color>
+
+    <color name="whiteTheme">#eee8d5</color>
+    <color name="whiteThemeLight">#fdf6e3</color>
+
+    <color name="blue">#268bd2</color>
+    <color name="blueLight">#839496</color>
+
+    <color name="yellow">#b58900</color>
+    <color name="yellowLight">#657b83</color>
+
 </resources>
