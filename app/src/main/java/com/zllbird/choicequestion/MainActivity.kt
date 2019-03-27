@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.zllbird.choicequestion.choice.CreateActionActivity
+import com.zllbird.choicequestion.plan.DayPlanFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -24,20 +25,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        loadToggle()
+        loadNav()
+        loadLintner()
+        loadFragment()
+    }
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-            startActivityForResult<CreateActionActivity>(CREATE_ACTION)
-        }
+    private fun loadFragment() {
+        fragmentManager.beginTransaction().add(R.id.content_main,DayPlanFragment.newInstance()).commit()
+    }
 
+    private fun loadLintner() {
+        // 跳转到创建行动条目
+        fab.setOnClickListener { startActivityForResult<CreateActionActivity>(CREATE_ACTION) }
+    }
+
+    private fun loadNav(){
+        nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    private fun loadToggle(){
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {

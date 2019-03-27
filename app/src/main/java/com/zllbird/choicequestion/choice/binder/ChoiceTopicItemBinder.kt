@@ -1,4 +1,4 @@
-package com.zllbird.choicequestion.choice.provider
+package com.zllbird.choicequestion.choice.binder
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import me.drakeet.multitype.ItemViewBinder
 
 import kotlinx.android.synthetic.main.item_choice_topic.view.*
 
-class ChoiceTopicItemProvider(private val itemOnClick:(Topic)->Unit) : ItemViewBinder<Topic, ChoiceTopicItemProvider.ViewHolder>() {
+class ChoiceTopicItemBinder(private val itemOnClick:(Topic)->Unit) : ItemViewBinder<Topic, ChoiceTopicItemBinder.ViewHolder>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
         return ViewHolder(inflater.inflate(R.layout.item_choice_topic, parent, false))
     }
