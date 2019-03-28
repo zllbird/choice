@@ -8,10 +8,10 @@
     <TextView
             android:id="@+id/tv_choice_action"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/item_choice_action_height"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:theme="@style/ButtonLight"
-            android:padding="@dimen/text_title_padding"
+            android:padding="@dimen/text_choice_padding"
             android:gravity="start"
             />
 

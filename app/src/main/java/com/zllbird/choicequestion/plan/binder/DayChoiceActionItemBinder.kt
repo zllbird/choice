@@ -9,31 +9,30 @@ import com.zllbird.choicequestion.choice.model.Action
 import kotlinx.android.synthetic.main.item_choice_action.view.*
 import me.drakeet.multitype.ItemViewBinder
 
-class DayChoiceActionItemBinder(val onActionClick: (Action)->Unit) : ItemViewBinder<Action,DayChoiceActionItemBinder.ViewHolder>(){
+class DayChoiceActionItemBinder(val onActionClick: (Action,Int)->Unit) : ItemViewBinder<Action,DayChoiceActionItemBinder.ViewHolder>(){
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
         return ViewHolder(inflater.inflate(R.layout.item_choice_action,parent,false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, item: Action) {
-        holder.onBindView(item,getPosition(holder),onActionClick)
-        holder.itemView.setOnClickListener { onActionClick(item) }
+        holder.onBindView(item,getPosition(holder))
+        holder.itemView.setOnClickListener { onActionClick(item,getPosition(holder)) }
     }
 
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
 
         fun onBindView(
             item: Action,
-            position: Int,
-            onActionClick: (Action) -> Unit
+            position: Int
         ){
-            itemView.tv_choice_action.text = "${changIndex(position)}. ${item.title} (${item.score})"
+            itemView.tv_choice_action.text = "${changIndex(position)}. ${item.title} (${item.score}分)"
 //            itemView.setOnClickListener { onActionClick(item) }
         }
 
         fun changIndex(position:Int) = when(position){
-            0 -> "A"
-            1 -> "B"
-            2 -> "C"
+            1 -> "A"
+            2 -> "B"
+            3 -> "C"
             else -> "D"
         }
 

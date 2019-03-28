@@ -91,6 +91,9 @@ dependencies {
     // recyleview adapter
     implementation 'me.drakeet.multitype:multitype-kotlin:3.4.4'
 
+    // recyleview animation
+    implementation 'jp.wasabeef:recyclerview-animators:2.3.0'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 

@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".choice.ChoiceTopicActivity"/>
         <activity android:name=".plan.CreateTomorrowPlanActivity"/>
+        <activity android:name=".plan.TomorrowPlanActivity"/>
     </application>
 
 </manifest>

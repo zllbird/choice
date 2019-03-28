@@ -8,14 +8,17 @@
     <dimen name="fab_margin_bottom">70dp</dimen>
 
     <dimen name="item_edit_height_200">260dp</dimen>
+    <dimen name="item_height_150">180dp</dimen>
     <dimen name="item_height_100">130dp</dimen>
 
     <dimen name="button_height">65dp</dimen>
-    <dimen name="item_choice_action_height">65dp</dimen>
+
+    <dimen name="item_choice_action_height">130dp</dimen>
 
     <dimen name="item_left_margin">30dp</dimen>
     <dimen name="item_right_margin">30dp</dimen>
 
     <dimen name="text_title_padding">15dp</dimen>
+    <dimen name="text_choice_padding">25dp</dimen>
 
 </resources>

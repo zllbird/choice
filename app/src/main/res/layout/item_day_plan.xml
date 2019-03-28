@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height_100"
             app:layout_constraintTop_toTopOf="parent"
-            android:theme="@style/ButtonDark"
+            android:theme="@style/ButtonLight"
             />
 
     <View
