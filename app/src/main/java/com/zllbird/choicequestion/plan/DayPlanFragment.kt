@@ -48,7 +48,7 @@ class DayPlanFragment : Fragment() {
         adapter = MultiTypeAdapter(items)
         adapter.register(Action::class.java, DayPlanItemBinder())
         rv_plan_action.adapter = adapter
-        rv_plan_action.layoutManager = LinearLayoutManager(context)
+        rv_plan_action.layoutManager = LinearLayoutManager(activity)
     }
 
 }

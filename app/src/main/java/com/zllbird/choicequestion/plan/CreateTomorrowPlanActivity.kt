@@ -1,35 +1,34 @@
 package com.zllbird.choicequestion.plan
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.transition.ChangeBounds
 import android.transition.Slide
 import android.transition.Transition
 import android.transition.TransitionManager
 import android.view.Gravity
 import android.view.View
+import com.dbflow5.annotation.PrimaryKey
 import com.dbflow5.query.OrderBy
 import com.dbflow5.query.list
+import com.dbflow5.query.result
 import com.dbflow5.query.select
 import com.orhanobut.logger.Logger
 import com.zllbird.choicequestion.R
 import com.zllbird.choicequestion.choice.model.Action
 import com.zllbird.choicequestion.choice.model.Action_Table
+import com.zllbird.choicequestion.choice.model.Topic
+import com.zllbird.choicequestion.choice.model.Topic_Table
 import com.zllbird.choicequestion.plan.binder.ChoiceStemBinder
 import com.zllbird.choicequestion.plan.binder.DayChoiceActionItemBinder
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
-import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import kotlinx.android.synthetic.main.activity_create_tomorrow_plan.*
 import me.drakeet.multitype.MultiTypeAdapter
-import org.jetbrains.anko.contentView
 import kotlin.random.Random
-import org.jetbrains.anko.*
 
 class CreateTomorrowPlanActivity : AppCompatActivity() {
 
@@ -40,8 +39,9 @@ class CreateTomorrowPlanActivity : AppCompatActivity() {
     private lateinit var adapter: MultiTypeAdapter
     private lateinit var items: MutableList<Any>
 
-    var change = false
     private lateinit var selectedActions: MutableList<Action>
+
+    private val maxCount = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +65,14 @@ class CreateTomorrowPlanActivity : AppCompatActivity() {
 
     private fun nextAction(){
         items.clear()
-//        loadData()
+        loadData(Random(10L).nextLong(0L,15L))
     }
 
     private fun loadData(topicID: Long) {
-        items.add(ChoiceStem("哈哈",7))
+        val topic = (select from Topic::class where (Topic_Table.id eq topicID)).result
+        if (topic != null){
+            items.add(ChoiceStem(topic.title!!,selectedActions.size+1))
+        }
         val list =
             (select from Action::class where (Action_Table.topicID eq topicID) orderBy OrderBy.fromString("RANDOM()") limit 3).list
         items.addAll(list)
@@ -77,9 +80,15 @@ class CreateTomorrowPlanActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
+    private fun slideRightIn() {
+        val slide = Slide(Gravity.RIGHT)
+        TransitionManager.beginDelayedTransition(findViewById(android.R.id.content),slide)
+        rv_choice_tomorrow_action.visibility = View.VISIBLE
+    }
+
     private fun addSelectedData(action:Action){
         selectedActions.add(action)
-        tv_selected_actions.text = "明日已安排${selectedActions.count()}事项，点击查看"
+        tv_selected_actions.text = "明日已安排 ${selectedActions.count()} 事项"
     }
 
     private fun initAdapter() {
@@ -88,9 +97,8 @@ class CreateTomorrowPlanActivity : AppCompatActivity() {
         selectedActions = mutableListOf()
         adapter = MultiTypeAdapter(items)
         adapter.register(Action::class.java, DayChoiceActionItemBinder { action, i ->
-//            items.remove(action)
-//            adapter.notifyItemRemoved(i)
-            addSelectedData(action)
+            if (selectedActions.count() < maxCount) addSelectedData(action)
+            else showDialogForPlanList()
         })
         adapter.register(ChoiceStem::class.java, ChoiceStemBinder())
         rv_choice_tomorrow_action.adapter = adapter
@@ -99,15 +107,50 @@ class CreateTomorrowPlanActivity : AppCompatActivity() {
 //        }
     }
 
+    private fun showDialogForPlanList() {
+        AlertDialog.Builder(this)
+            .setTitle("明日计划已生成")
+            .setPositiveButton("确定") { _, _ ->
+                saveTomorrowPlan()
+                setResult(Activity.RESULT_OK)
+                finish()
+            }
+            .create()
+    }
+
+    private fun saveTomorrowPlan() {
+
+    }
+
+    private val sliderListner = SlideLeftOutListner { nextAction() }
+
     private fun slideLeftOut() {
-//        val slide = Slide(Gravity.LEFT)
-//        TransitionManager.beginDelayedTransition(findViewById(android.R.id.content),slide)
-//        if (!change){
-//            rv_choice_tomorrow_action.visibility = View.GONE
-//        }else{
-//            rv_choice_tomorrow_action.visibility = View.VISIBLE
-//        }
-//        change = !change
+        val slide = Slide(Gravity.LEFT).addListener(sliderListner)
+        TransitionManager.beginDelayedTransition(findViewById(android.R.id.content),slide)
+        rv_choice_tomorrow_action.visibility = View.GONE
+    }
+
+    class SlideLeftOutListner(var onTransitionEnd:()->Unit) : Transition.TransitionListener{
+        override fun onTransitionEnd(transition: Transition?) {
+            Logger.i("onTransitionEnd")
+            onTransitionEnd();
+        }
+
+        override fun onTransitionResume(transition: Transition?) {
+            Logger.i("onTransitionResume")
+        }
+
+        override fun onTransitionPause(transition: Transition?) {
+            Logger.i("onTransitionPause")
+        }
+
+        override fun onTransitionCancel(transition: Transition?) {
+            Logger.i("onTransitionCancel")
+        }
+
+        override fun onTransitionStart(transition: Transition?) {
+            Logger.i("onTransitionStart")
+        }
     }
 
 }
